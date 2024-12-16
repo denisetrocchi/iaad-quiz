@@ -1,0 +1,382 @@
+@font-face {
+    font-family: "Mattone";
+    src: url("/fonts/Mattone-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Mattone";
+    src: url("/fonts/Mattone-Bold.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Mattone";
+    src: url("/fonts/Mattone-Black.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: "Mattone", Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    overflow: hidden;
+    counter-reset: points;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+small,
+a,
+label {
+    margin: 0;
+    color: inherit;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+header {
+    width: 100%;
+    padding: 20px;
+    position: fixed;
+    text-align: center;
+    mix-blend-mode: difference;
+    z-index: 999;
+}
+
+.title {
+    display: inline-block;
+    text-align: center;
+}
+
+main {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+footer {
+    width: 100%;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mix-blend-mode: difference;
+    gap: 10px;
+}
+
+.section {
+    min-height: 100vh;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 440px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    position: relative;
+    animation: enter 1s ease-in-out;
+}
+
+@keyframes enter {
+    0% {
+        transform: scaleX(0) scaleY(.5) rotate(-10deg);
+    }
+
+    70% {
+        transform: scaleX(1) scaleY(1) rotate(5deg);
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1) rotate(0);
+    }
+}
+
+.card-question {
+    color: #000;
+    text-align: center;
+}
+
+.card-options {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+[type=radio] {
+    border: 0;
+    height: 1px;
+    width: 1px;
+    visibility: hidden;
+    position: absolute;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    position: relative;
+    width: 100%;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    opacity: .5;
+    transition: transform .3s ease;
+    will-change: transform;
+}
+
+label .letter,
+label .icon {
+    width: 24px;
+    color: #000;
+}
+
+label .icon {
+    text-align: right;
+}
+
+label .option {
+    flex: 1;
+}
+
+.istrue:checked+label {
+    background: #00ff0d;
+    opacity: 1;
+}
+
+.isfalse:checked+label {
+    background: #ff0000;
+    opacity: 1;
+}
+
+input:invalid+label {
+    background: #fff;
+    opacity: 1;
+}
+
+input:invalid+label .icon {
+    opacity: 0;
+}
+
+input:invalid+label:hover {
+    opacity: 1;
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+.istrue:checked+label .icon {
+    opacity: 1;
+}
+
+input:valid+label {
+    pointer-events: none
+}
+
+.button-next {
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #000;
+    color: #fff;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    outline: none;
+    padding: 14px 0;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .3s ease;
+}
+
+.button-next:hover {
+    transform: scale(1.01);
+}
+
+form:invalid .button-next {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: #ebebeb;
+    color: #c1c1c1;
+    border-color: #c1c1c1;
+}
+
+.button-next:hover {
+    background: #000;
+    color: #fff;
+}
+
+.score-counter {
+    width: fit-content;
+    margin: auto;
+}
+
+.score-text {
+    display: inline-block;
+}
+
+.score-counter::after {
+    content: counter(points) "/10";
+}
+
+.one-a:checked,
+.two-c:checked,
+.three-c:checked,
+.four-b:checked,
+.five-a:checked,
+.six-b:checked,
+.seven-b:checked,
+.eight-b:checked,
+.nine-b:checked,
+.ten-b:checked {
+    counter-increment: points;
+}
+
+#gameover {
+    position: absolute;
+    background: #000;
+    padding: 20px;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+}
+
+.gameover-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.gameover-text {
+    text-align: center;
+    margin-top: -40px;
+}
+
+.gameover-score {
+    width: 250px;
+    height: 250px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    position: relative;
+}
+
+.gameover-score::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #fff;
+    clip-path: polygon(100% 50%, 79.34% 56.24%, 95.68% 70.34%, 74.27% 67.63%, 83.46% 87.16%, 65% 75.98%, 65.45% 97.55%, 53.14% 79.84%, 44.77% 99.73%, 40.73% 78.53%, 25% 93.3%, 29.93% 72.29%, 9.55% 79.39%, 22.59% 62.2%, 1.09% 60.4%, 20% 50%, 1.09% 39.6%, 22.59% 37.8%, 9.55% 20.61%, 29.93% 27.71%, 25% 6.7%, 40.73% 21.47%, 44.77% 0.27%, 53.14% 20.16%, 65.45% 2.45%, 65% 24.02%, 83.46% 12.84%, 74.27% 32.37%, 95.68% 29.66%, 79.34% 43.76%);
+    /* https://css-shape.com/ */
+    z-index: -1;
+    animation: rotation 4s infinite linear;
+}
+
+@keyframes rotation {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.gameover-text h2::after {
+    content: counter(points) "/10";
+    display: block;
+    font-size: larger;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contact {
+    position: relative;
+    padding-left: 10px;
+}
+
+.contact:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: #fff;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    .card {
+        padding: 20px;
+        min-height: 480px;
+        margin: auto;
+    }
+    .card-options {
+        margin: 30px 0;
+    }
+}
