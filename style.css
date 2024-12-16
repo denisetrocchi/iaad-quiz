@@ -42,6 +42,7 @@ body {
     font-family: "Mattone", Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 400;
+    line-height: auto;
     position: relative;
     overflow: hidden;
     counter-reset: points;
@@ -68,10 +69,10 @@ a {
 
 header {
     width: 100%;
+    background: #000;
     padding: 20px;
     position: fixed;
     text-align: center;
-    mix-blend-mode: difference;
     z-index: 999;
 }
 
@@ -90,12 +91,12 @@ main {
 footer {
     width: 100%;
     padding: 20px;
+    background: #000;
     position: fixed;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    mix-blend-mode: difference;
     gap: 10px;
 }
 
@@ -109,31 +110,44 @@ footer {
 }
 
 .card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 30px;
     width: 100%;
     max-width: 440px;
     min-height: 500px;
+    margin: auto;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: auto;
+    background: #fff;
+    line-height: 1.2;
+    border-radius: 20px;
     position: relative;
-    animation: enter 1s ease-in-out;
+    animation: enter 1s ease-out forwards;
 }
 
 @keyframes enter {
     0% {
-        transform: scaleX(0) scaleY(.5) rotate(-10deg);
+        transform: scaleX(0.2) scaleY(.1) rotate(180deg);
+    }
+
+    30% {
+        transform: scaleX(.9) scaleY(0.05) rotate(180deg);
+    }
+
+    50% {
+        transform: scaleX(0.8) scaleY(.9) rotate(45deg);
     }
 
     70% {
-        transform: scaleX(1) scaleY(1) rotate(5deg);
+        transform: scaleX(1.1) scaleY(.8) rotate(0deg);
+    }
+
+    90% {
+        transform: scaleX(0.95) scaleY(1.01) rotate(0deg);
     }
 
     100% {
-        transform: scaleX(1) scaleY(1) rotate(0);
+        transform: scaleX(1) scaleY(1) rotate(0deg);
     }
 }
 
@@ -193,6 +207,40 @@ label .option {
 .isfalse:checked+label {
     background: #ff0000;
     opacity: 1;
+}
+
+input:not(:invalid).istrue:not(:checked)+label {
+    animation: wobble 1s ease-out infinite;
+}
+
+@keyframes wobble {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    15% {
+        transform: rotate(-.5deg);
+    }
+
+    30% {
+        transform: rotate(.5deg);
+    }
+
+    45% {
+        transform: rotate(-.5deg);
+    }
+
+    60% {
+        transform: rotate(.5deg);
+    }
+
+    75% {
+        transform: rotate(-.5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 input:invalid+label {
@@ -275,8 +323,8 @@ form:invalid .button-next {
 .five-a:checked,
 .six-b:checked,
 .seven-b:checked,
-.eight-b:checked,
-.nine-b:checked,
+.eight-a:checked,
+.nine-c:checked,
 .ten-b:checked {
     counter-increment: points;
 }
@@ -312,6 +360,7 @@ form:invalid .button-next {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    justify-self: center;
     color: #000;
     position: relative;
 }
@@ -369,14 +418,45 @@ form:invalid .button-next {
 
 @media (max-width: 768px) {
     body {
-        font-size: 14px;
+        font-size: 12px;
     }
+
     .card {
         padding: 20px;
-        min-height: 480px;
+        min-height: 460px;
         margin: auto;
     }
+
     .card-options {
         margin: 30px 0;
+    }
+}
+
+#fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: #000;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-content: center;
+    text-align: center;
+    z-index: 9999999;
+}
+
+@media screen and (max-height: 540px) {
+    #fallback {
+        display: block;
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+
+    .card,
+    .gameover-score::before {
+        animation: none !important;
     }
 }
