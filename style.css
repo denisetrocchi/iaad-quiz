@@ -69,10 +69,10 @@ a {
 
 header {
     width: 100%;
-    background: #000;
     padding: 20px;
     position: fixed;
     text-align: center;
+    mix-blend-mode: difference;
     z-index: 999;
 }
 
@@ -91,13 +91,13 @@ main {
 footer {
     width: 100%;
     padding: 20px;
-    background: #000;
     position: fixed;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    mix-blend-mode: difference;
 }
 
 .section {
