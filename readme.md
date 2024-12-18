@@ -1,8 +1,8 @@
 # IAAD Quiz
-Quiz HTML+CSS used during a web animation lesson held at IAAD University for Design in December 2024
+Quiz HTML+CSS used during a web animation lesson held at IAAD University for Design in December 2024.
 <br>
 <br>
-*Transcript:*
+*[IT] Transcript:*
 <br>
 1. Una transizione CSS può passare...  
    A. solo da stato iniziale a finale  
