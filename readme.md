@@ -1,6 +1,8 @@
 # IAAD Quiz
 Quiz HTML+CSS used during a web animation lesson held at IAAD University for Design in December 2024.
 <br>
+Topic: CSS animations and transitions.
+<br>
 <br>
 *[IT] Transcript:*
 <br>
